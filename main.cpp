@@ -13,7 +13,7 @@ void heap_insert_tests(max_heap &hp) {
 	std::string word = "item";
 	int random_num;
 	long int seed = long(time(0));    // seed for random number generator
-	srand(seed);
+	srand((unsigned int) seed);
 	
 	//--- Testing insert functionality
 	std::cout << "*** TESTING INSERT ***" << std::endl;
@@ -21,7 +21,7 @@ void heap_insert_tests(max_heap &hp) {
 	//    and prints out the top, but it does not fully 
 	//    test the correctness of the insert function.
 	for (int i = 0 ; i < 5; i++) {
-		random_num = rand() % 100;
+		random_num = rand() % 90 + 5;
 		string text = word;
 		text += std::to_string(i+1);
 		std::cout << "adding " << text << ",  with number " << random_num << " to heap" << std::endl;
@@ -31,12 +31,31 @@ void heap_insert_tests(max_heap &hp) {
 	}
 	
 	//--- Specific insert functionality that should be tested:
-	
+	std::cout << "*** TESTING INSERT WITHOUT SWAPUPS ***" << std::endl;
 	// insert without any swap_ups needed
 		// <INSERT TEST(S) HERE>
+    for (int i = 0 ; i < 5; i++) {
+        random_num = 5-i; // will always be smaller than previous nodes
+        string text = word;
+        text += std::to_string(i+1);
+        std::cout << "adding " << text << ",  with number " << random_num << " to heap" << std::endl;
+        hp.insert(text_item{text, random_num});
+        temp = hp.top();
+        std::cout << "Top of heap is: " << temp << std::endl;
+    }
 		
+    std::cout << "*** TESTING INSERT WITH MULTIPLE SWAPUPS ***" << std::endl;
 	// insert with a swap_up / multiple swap_ups
 		// <INSERT TEST(S) HERE>
+    for (int i = 0 ; i < 5; i++) {
+        random_num = (i+1)*100; // will always be larger than previous nodes
+        string text = word;
+        text += std::to_string(i+1);
+        std::cout << "adding " << text << ",  with number " << random_num << " to heap" << std::endl;
+        hp.insert(text_item{text, random_num});
+        temp = hp.top();
+        std::cout << "Top of heap is: " << temp << std::endl;
+    }
 }
 
 //--- PART 1B: Implementation and testing of heap delete
@@ -46,24 +65,40 @@ void heap_delete_tests(max_heap &hp) {
 	//--- Testing deleteMax functionality
 	std::cout << "*** TESTING DELETEMAX ***" << std::endl;
 	//--- This does not fully test delete_max functionality.
-	if (hp.size() > 1) {
+	while (hp.size() > 1) { // will do both left and right childs at some point
 		temp = hp.delete_max();
 		std::cout << "Item returned from heap delete: "<< temp << std::endl;
 		temp = hp.top();
 		std::cout << "Top of heap is now: " << temp << std::endl;	
 	}
-	
-	//--- Specific insert functionality that should be tested:
-	
-	// remove_max works when swap_down with left child
-		// <INSERT TEST(S) HERE>
-		
-	// remove_max workd when swap_down with right child
-		// <INSERT TEST(S) HERE>
-		
+    
+    //--- Specific insert functionality that should be tested:
+    
 	// remove_max on an empty heap (should throw exception similar to top())
 		// <INSERT TEST(S) HERE>
-		
+    std::cout << "*** TESTING DELETEMAX ON HEAP OF SIZE 1***" << std::endl;
+    temp = hp.delete_max();
+    std::cout << "Item returned from heap delete: "<< temp << std::endl;
+    try{
+        temp = hp.top();
+        std::cout << "ERROR: Top of heap is now: " << temp << std::endl;
+    }catch(std::logic_error){
+        std::cout << "Heap is now empty" << std::endl;
+    }
+    
+    std::cout << "*** TESTING DELETEMAX ON EMPTY HEAP***" << std::endl;
+    try{
+        temp = hp.delete_max();
+        std::cout << "ERROR: Item returned from heap delete: "<< temp << std::endl;
+    }catch(std::logic_error){
+        std::cout << "Exception thrown, heap is empty" << std::endl;
+    }
+    
+    // remove_max works when swap_down with left child
+    // <INSERT TEST(S) HERE> // completed above in the while loop
+    
+    // remove_max workd when swap_down with right child
+    // <INSERT TEST(S) HERE> // completed above in the while loop
 }
 
 //--- PART 2: Implementation and testing of BST word_frequency
@@ -123,7 +158,7 @@ void starts_with(max_heap hp, char starts_with_letter) {
 
 void heap_tester() {	
 	text_item temp;
-	int heap_size = 10; //feel free to create heaps of other sizes when testing
+	int heap_size = 20; //feel free to create heaps of other sizes when testing
 	//cout << "How many items should be added to heap? ";
 	//cin >> heap_size;
 	max_heap hp(heap_size);
@@ -162,7 +197,7 @@ int main(int argc, char* argv[]) {
 	
 	//--- Part 2: string_bst implementation
 	string_bst tree;
-	load_bst("sample1.txt", tree); // create a bst from an input file.
+	load_bst("/Users/Cynnifer/Documents/UBC/Year 3/2017 Winter/CPSC 221/cs221/proj2/proj2/sample1.txt", tree); // create a bst from an input file.
 	tree_tester(tree);			//sample2.txt contains a much bigger file
 	
 	//--- Part 3: word frequency analysis of text files
