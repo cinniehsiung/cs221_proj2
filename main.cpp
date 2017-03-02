@@ -5,6 +5,7 @@
 #include "max_heap.hpp"
 #include "text_item.hpp"
 #include "util.hpp"
+#include <string>
 
 using namespace std;
 
@@ -202,9 +203,24 @@ void overall_most_freq(max_heap hp) {
 	
 	//--- Add your code to print out the 5 most frequent words below:
 	if (hp.size() > 1) {
-		std::cout << "Most frequent text item: " << hp.top() << std::endl;
-	}
-
+        
+        text_item::text_item * tempStore = new text_item::text_item[5];
+        int i;
+        for(i=0; i<5; i++){
+            if(hp.empty()){
+                break;
+            }
+            
+            std::cout << hp.top() << std::endl;
+            tempStore[i] = hp.delete_max();
+        }
+        
+        for(int k=0; k<i; k++){
+            hp.insert(tempStore[k]);
+        }
+        
+        delete [] tempStore;
+    }
 }
 
 void at_least_length(max_heap hp, size_t num_letters) {
@@ -213,8 +229,32 @@ void at_least_length(max_heap hp, size_t num_letters) {
 		
 	//--- Add code to print out the 5 most common
 	//--- words of length at least <num_letters>
-
-	
+    
+    if (hp.size() > 1) {
+        
+        text_item::text_item * tempStore = new text_item::text_item[hp.size()];
+        int i;
+        int numFound = 0;
+        for(i=0; i<hp.size(); i++){
+            if(hp.empty() || numFound == 5){
+                break;
+            }
+            
+            text_item::text_item curr = hp.top();
+            if(curr.word.length()>=num_letters){
+                std::cout << curr << std::endl;
+                numFound++;
+            }
+            
+            tempStore[i] = hp.delete_max();
+        }
+        
+        for(int k=0; k<i; k++){
+            hp.insert(tempStore[k]);
+        }
+        
+        delete [] tempStore;
+    }
 }
 
 void starts_with(max_heap hp, char starts_with_letter) {
@@ -224,7 +264,31 @@ void starts_with(max_heap hp, char starts_with_letter) {
 	//--- Add code to print out the 5 most common words
 	//--- that start with the letter <starts_with_letter>
 
-	
+    if (hp.size() > 1) {
+        
+        text_item::text_item * tempStore = new text_item::text_item[hp.size()];
+        int i;
+        int numFound = 0;
+        for(i=0; i<hp.size(); i++){
+            if(hp.empty() || numFound == 5){
+                break;
+            }
+            
+            text_item::text_item curr = hp.top();
+            if(curr.word.front() == starts_with_letter){
+                std::cout << curr << std::endl;
+                numFound++;
+            }
+            
+            tempStore[i] = hp.delete_max();
+        }
+        
+        for(int k=0; k<i; k++){
+            hp.insert(tempStore[k]);
+        }
+        
+        delete [] tempStore;
+    }
 }
 
 void heap_tester() {	
@@ -255,7 +319,7 @@ void text_analysis_tester(string_bst &tree) {
 	std::cout << std::endl << "BEGINNING TESTS FOR PART 3" << std::endl;
 	overall_most_freq(copy_to_heap(tree));
 	std::cout << std::endl;
-	at_least_length(copy_to_heap(tree), 8); // change the 8 to test other string-lengths
+	at_least_length(copy_to_heap(tree), 6); // change the 8 to test other string-lengths
 	std::cout << std::endl;
 	starts_with(copy_to_heap(tree), 'c'); // change the 'c' to test words that starts_with_letter
 											// with different characters
@@ -268,13 +332,14 @@ int main(int argc, char* argv[]) {
 	
 	//--- Part 2: string_bst implementation
 	string_bst tree;
-	//load_bst("/Users/Cynnifer/Documents/UBC/Year 3/2017 Winter/CPSC 221/cs221/proj2/proj2/sample1.txt", tree); // create a bst from an input file.
-	load_bst("C:/Users/Yuqing/Documents/CS221/cs221_proj2/sample1.txt", tree);
+    
+    // create a bst from an input file.
+    load_bst(argv[1], tree);
+    //load_bst("/Users/Cynnifer/Documents/UBC/Year 3/2017 Winter/CPSC 221/cs221/proj2/proj2/sample1.txt", tree);
+    //load_bst("C:/Users/Yuqing/Documents/CS221/cs221_proj2/sample1.txt", tree);
 	
 	tree_tester(tree);			//sample2.txt contains a much bigger file
 	
 	//--- Part 3: word frequency analysis of text files
 	text_analysis_tester(tree);
-
-	system("PAUSE");
 }
