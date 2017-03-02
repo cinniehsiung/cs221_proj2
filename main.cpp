@@ -1,4 +1,5 @@
 #include <iostream>
+#include <time.h>
 
 #include "string_bst.hpp"
 #include "max_heap.hpp"
@@ -105,6 +106,10 @@ void heap_delete_tests(max_heap &hp) {
 void tree_tester(string_bst const &tree) {
 	std::cout << std::endl << "BEGINNING TESTS FOR PART 2" << std::endl;
 	
+	std::cout << "Current tree under testing: " << endl;
+	tree.display();
+	std::cout << endl;
+
 	//--- Testing word_frequency functionality
 	//--- This does not fully test word_frequency functionality.
 	if (tree.size() > 1) {
@@ -116,13 +121,79 @@ void tree_tester(string_bst const &tree) {
 	}
 	
 	//--- Specific word_frequency functionality that should be tested:
-	
+	long int seed = long(time(0));    // seed for random number generator
+	srand((unsigned int)seed);
+
 	// can search through both left and right subtrees if not found at current node
-		// <INSERT TEST(S) HERE>
-		
+	if (tree.size() > 1) {
+		string to_find = tree.get_root()->data.word;
+		int num_times = tree.word_frequency(to_find);
+		std::cout << "Test to find the root node frequency." << endl;
+		std::cout << "Found: " << to_find <<
+			" in the input file " << num_times
+			<< " time(s)." << std::endl;
+	}
+
+	if (tree.size() > 1) {
+		string_bst::node_t * currNode = tree.get_root();
+		while (currNode->left) {
+			currNode = currNode->left;
+		}
+		string to_find = currNode->data.word;
+		int num_times = tree.word_frequency(to_find);
+		std::cout << "Test to find the frequency of the leftmost node in the tree." << endl;
+		std::cout << "Found: " << to_find <<
+			" in the input file " << num_times
+			<< " time(s)." << std::endl;
+	}
+
+	if (tree.size() > 1) {
+		string_bst::node_t * currNode = tree.get_root();
+		while (currNode->right) {
+			currNode = currNode->right;
+		}
+		string to_find = currNode->data.word;
+		int num_times = tree.word_frequency(to_find);
+		std::cout << "Test to find the frequency of the rightmost node in the tree." << endl;
+		std::cout << "Found: " << to_find <<
+			" in the input file " << num_times
+			<< " time(s)." << std::endl;
+	}
+
+	if (tree.size() > 1) {
+		string_bst::node_t * currNode = tree.get_root();
+		while (currNode->right && currNode->left) {
+			if (rand() % 2 == 1) {
+				currNode = currNode->right;
+			}
+			else {
+				currNode = currNode->left;
+			}
+		}
+		while (currNode->right) {
+			currNode = currNode->right;
+		}
+		while (currNode->left) {
+			currNode = currNode->left;
+		}
+		string to_find = currNode->data.word;
+		int num_times = tree.word_frequency(to_find);
+		std::cout << "Test to find the frequency of the a random leaf node in the tree." << endl;
+		std::cout << "Found: " << to_find <<
+			" in the input file " << num_times
+			<< " time(s)." << std::endl;
+	}
+
 	// returns 0 if word is not found
 		// <INSERT TEST(S) HERE>
-			
+	if (tree.size() > 1) {
+		string to_find = "notAWord";
+		int num_times = tree.word_frequency(to_find);
+		std::cout << "Test for nonexistent word, should return 0." << endl;
+		std::cout << "Found: " << to_find <<
+			" in the input file " << num_times
+			<< " time(s)." << std::endl;
+	}
 }
 
 //--- PART 3: Implementation and testing of word frequency analysis
@@ -197,10 +268,13 @@ int main(int argc, char* argv[]) {
 	
 	//--- Part 2: string_bst implementation
 	string_bst tree;
-	load_bst("/Users/Cynnifer/Documents/UBC/Year 3/2017 Winter/CPSC 221/cs221/proj2/proj2/sample1.txt", tree); // create a bst from an input file.
+	//load_bst("/Users/Cynnifer/Documents/UBC/Year 3/2017 Winter/CPSC 221/cs221/proj2/proj2/sample1.txt", tree); // create a bst from an input file.
+	load_bst("C:/Users/Yuqing/Documents/CS221/cs221_proj2/sample1.txt", tree);
+	
 	tree_tester(tree);			//sample2.txt contains a much bigger file
 	
 	//--- Part 3: word frequency analysis of text files
 	text_analysis_tester(tree);
 
+	system("PAUSE");
 }

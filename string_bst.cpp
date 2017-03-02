@@ -70,8 +70,27 @@ string_bst::node_t* string_bst::get_root() const {
 
 int string_bst::word_frequency(const tree_key &key) const {
 	
-	// ADD CODE HERE
-		
+	node_t * curr = root;
+	//traverse tree down both nodes
+	while (curr->left || curr->right) {
+		if (curr->data.word == key) {
+			return curr->data.freq; //we found the key's frequency
+		}
+		if (curr->data.word > key && curr->left) {
+			curr = curr->left;
+		}
+		else if (curr->data.word < key && curr->right) {
+			curr = curr->right;
+		}
+		else {
+			break;
+		}
+	}
+
+	if (curr->data.word == key) {
+		return curr->data.freq;
+	}
+
 	return 0;
 }
 
