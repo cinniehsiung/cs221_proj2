@@ -1,0 +1,116 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf810
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;\red255\green255\blue255;}
+{\*\expandedcolortbl;;\csgenericrgb\c0\c0\c0;\csgenericrgb\c100000\c100000\c100000;}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf2 \cb3 \CocoaLigature0 Created heap of size 20\
+Current number of items in heap is: 0\
+Heap is empty, can't access top!\
+\
+BEGINNING TESTS FOR PART 1A\
+*** TESTING INSERT ***\
+adding item1,  with number 74 to heap\
+Top of heap is: text_item\{"item1",74\}\
+adding item2,  with number 84 to heap\
+Top of heap is: text_item\{"item2",84\}\
+adding item3,  with number 81 to heap\
+Top of heap is: text_item\{"item2",84\}\
+adding item4,  with number 69 to heap\
+Top of heap is: text_item\{"item2",84\}\
+adding item5,  with number 85 to heap\
+Top of heap is: text_item\{"item5",85\}\
+*** TESTING INSERT WITHOUT SWAPUPS ***\
+adding item1,  with number 5 to heap\
+Top of heap is: text_item\{"item5",85\}\
+adding item2,  with number 4 to heap\
+Top of heap is: text_item\{"item5",85\}\
+adding item3,  with number 3 to heap\
+Top of heap is: text_item\{"item5",85\}\
+adding item4,  with number 2 to heap\
+Top of heap is: text_item\{"item5",85\}\
+adding item5,  with number 1 to heap\
+Top of heap is: text_item\{"item5",85\}\
+*** TESTING INSERT WITH MULTIPLE SWAPUPS ***\
+adding item1,  with number 100 to heap\
+Top of heap is: text_item\{"item1",100\}\
+adding item2,  with number 200 to heap\
+Top of heap is: text_item\{"item2",200\}\
+adding item3,  with number 300 to heap\
+Top of heap is: text_item\{"item3",300\}\
+adding item4,  with number 400 to heap\
+Top of heap is: text_item\{"item4",400\}\
+adding item5,  with number 500 to heap\
+Top of heap is: text_item\{"item5",500\}\
+\
+BEGINNING TESTS FOR PART 1B\
+*** TESTING DELETEMAX ***\
+Item returned from heap delete: text_item\{"item5",500\}\
+Top of heap is now: text_item\{"item4",400\}\
+Item returned from heap delete: text_item\{"item4",400\}\
+Top of heap is now: text_item\{"item3",300\}\
+Item returned from heap delete: text_item\{"item3",300\}\
+Top of heap is now: text_item\{"item2",200\}\
+Item returned from heap delete: text_item\{"item2",200\}\
+Top of heap is now: text_item\{"item1",100\}\
+Item returned from heap delete: text_item\{"item1",100\}\
+Top of heap is now: text_item\{"item5",85\}\
+Item returned from heap delete: text_item\{"item5",85\}\
+Top of heap is now: text_item\{"item2",84\}\
+Item returned from heap delete: text_item\{"item2",84\}\
+Top of heap is now: text_item\{"item3",81\}\
+Item returned from heap delete: text_item\{"item3",81\}\
+Top of heap is now: text_item\{"item1",74\}\
+Item returned from heap delete: text_item\{"item1",74\}\
+Top of heap is now: text_item\{"item4",69\}\
+Item returned from heap delete: text_item\{"item4",69\}\
+Top of heap is now: text_item\{"item1",5\}\
+Item returned from heap delete: text_item\{"item1",5\}\
+Top of heap is now: text_item\{"item2",4\}\
+Item returned from heap delete: text_item\{"item2",4\}\
+Top of heap is now: text_item\{"item3",3\}\
+Item returned from heap delete: text_item\{"item3",3\}\
+Top of heap is now: text_item\{"item4",2\}\
+Item returned from heap delete: text_item\{"item4",2\}\
+Top of heap is now: text_item\{"item5",1\}\
+*** TESTING DELETEMAX ON HEAP OF SIZE 1***\
+Item returned from heap delete: text_item\{"item5",1\}\
+Heap is now empty\
+*** TESTING DELETEMAX ON EMPTY HEAP***\
+Exception thrown, heap is empty\
+\
+BEGINNING TESTS FOR PART 2\
+Found: difficult in the input file 39 time(s).\
+Test to find the root node frequency.\
+Found: les in the input file 41 time(s).\
+Test to find the frequency of the leftmost node in the tree.\
+Found: #linknote in the input file 25 time(s).\
+Test to find the frequency of the rightmost node in the tree.\
+Found: ? in the input file 1 time(s).\
+Test to find the frequency of the a random leaf node in the tree.\
+Found: familiarly in the input file 4 time(s).\
+Test for nonexistent word, should return 0.\
+Found: notAWord in the input file 0 time(s).\
+\
+BEGINNING TESTS FOR PART 3\
+*** Top 5 most frequent words: ***\
+text_item\{"the",40506\}\
+text_item\{"of",19652\}\
+text_item\{"and",14786\}\
+text_item\{"a",14315\}\
+text_item\{"to",13761\}\
+\
+*** Top 5 most frequent words with at least 6 letters ***\
+text_item\{"marius",1347\}\
+text_item\{"valjean",1098\}\
+text_item\{"himself",1063\}\
+text_item\{"cosette",1000\}\
+text_item\{"little",971\}\
+\
+*** Top 5 most frequent words that begin with c ***\
+text_item\{"cosette",1000\}\
+text_item\{"could",675\}\
+text_item\{"come",548\}\
+text_item\{"child",453\}\
+text_item\{"can",432\}}

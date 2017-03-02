@@ -107,9 +107,10 @@ void heap_delete_tests(max_heap &hp) {
 void tree_tester(string_bst const &tree) {
 	std::cout << std::endl << "BEGINNING TESTS FOR PART 2" << std::endl;
 	
-	std::cout << "Current tree under testing: " << endl;
-	tree.display();
-	std::cout << endl;
+    // for testing purposes
+	//std::cout << "Current tree under testing: " << endl;
+	//tree.display();
+	//std::cout << endl;
 
 	//--- Testing word_frequency functionality
 	//--- This does not fully test word_frequency functionality.

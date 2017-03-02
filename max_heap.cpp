@@ -43,6 +43,7 @@ text_item max_heap::delete_max() {
 		throw std::logic_error("Cannot delete, heap is empty!");
 	} else {
 		// ADD CODE HERE
+         // adapted miminum heap example from slides
 		
 		// Fix this so it correctly deletes
 		// and maintains the heap-order property
@@ -66,6 +67,8 @@ text_item max_heap::delete_max() {
 
 void max_heap::swap_down(int i) {
 	// ADD CODE HERE
+    // adapted miminum heap example from slides
+    
 		
 	// Fix this so it correctly swaps
     int s = i;
@@ -100,6 +103,7 @@ void max_heap::insert(const text_item & item) {
 		throw std::logic_error("Cannot insert, heap array is full!");
 	} else {
 		// ADD CODE HERE
+         // adapted miminum heap example from slides
 		
 		// Fix this so it correctly inserts
 		// and maintains the heap-order property
@@ -115,6 +119,7 @@ void max_heap::insert(const text_item & item) {
 
 void max_heap::swap_up(int i) {
 	// ADD CODE HERE
+     // adapted miminum heap example from slides
 		
 	// Fix this so it correctly swaps
     
