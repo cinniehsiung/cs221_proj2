@@ -76,8 +76,69 @@ void heap_delete_tests(max_heap &hp) {
     
     //--- Specific insert functionality that should be tested:
     
-	// remove_max on an empty heap (should throw exception similar to top())
-		// <INSERT TEST(S) HERE>
+    // remove_max works when swap_down with left child
+    // <INSERT TEST(S) HERE> // completed above in the while loop
+    std::cout << "*** TESTING DELETEMAX WHEN SWAP DOWN LEFT ***" << std::endl;
+    
+    string text = "word1";
+    int num1 = 10;
+    std::cout << "adding " << text << ",  with number " << num1 << " to heap" << std::endl;
+    hp.insert(text_item{text, num1});
+    temp = hp.top();
+    std::cout << "Top of heap is: " << temp << std::endl;
+    
+    
+    string text2 = "left1";
+    int num2 = 6;
+    std::cout << "adding " << text2 << ",  with number " << num2 << " to heap" << std::endl;
+    hp.insert(text_item{text, num2});
+    temp = hp.top();
+    std::cout << "Top of heap is: " << temp << std::endl;
+    
+    string text3 = "right1";
+    int num3 = 3;
+    std::cout << "adding " << text3 << ",  with number " << num3 << " to heap" << std::endl;
+    hp.insert(text_item{text, num3});
+    temp = hp.top();
+    std::cout << "Top of heap is: " << temp << std::endl;
+    
+    string text4 = "min1";
+    int num4 = 5;
+    std::cout << "adding " << text3 << ",  with number " << num4 << " to heap" << std::endl;
+    hp.insert(text_item{text, num4});
+    temp = hp.top();
+    std::cout << "Top of heap is: " << temp << std::endl;
+    
+    temp = hp.delete_max();
+    std::cout << "Item returned from heap delete: "<< temp << std::endl;
+    temp = hp.top();
+    std::cout << "Top of heap is now: " << temp << std::endl;
+    
+    // remove_max workd when swap_down with right child
+     std::cout << "*** TESTING DELETEMAX WHEN SWAP DOWN RIGHT ***" << std::endl;
+    // <INSERT TEST(S) HERE> // completed above in the while loop
+    string text5 = "min2";
+    int num5 = 2;
+    std::cout << "adding " << text5 << ",  with number " << num5 << " to heap" << std::endl;
+    hp.insert(text_item{text, num5});
+    temp = hp.top();
+    std::cout << "Top of heap is: " << temp << std::endl;
+    
+    temp = hp.delete_max();
+    std::cout << "Item returned from heap delete: "<< temp << std::endl;
+    temp = hp.top();
+    std::cout << "Top of heap is now: " << temp << std::endl;
+    
+    // remove_max on an empty heap (should throw exception similar to top())
+    // <INSERT TEST(S) HERE>
+    std::cout << "*** TESTING DELETEMAX BY DELETING ALL VALUES BUT 1***" << std::endl;
+    while (hp.size() > 1) { // will do both left and right childs at some point
+        temp = hp.delete_max();
+        std::cout << "Item returned from heap delete: "<< temp << std::endl;
+        temp = hp.top();
+        std::cout << "Top of heap is now: " << temp << std::endl;
+    }
+    
     std::cout << "*** TESTING DELETEMAX ON HEAP OF SIZE 1***" << std::endl;
     temp = hp.delete_max();
     std::cout << "Item returned from heap delete: "<< temp << std::endl;
@@ -95,12 +156,6 @@ void heap_delete_tests(max_heap &hp) {
     }catch(std::logic_error){
         std::cout << "Exception thrown, heap is empty" << std::endl;
     }
-    
-    // remove_max works when swap_down with left child
-    // <INSERT TEST(S) HERE> // completed above in the while loop
-    
-    // remove_max workd when swap_down with right child
-    // <INSERT TEST(S) HERE> // completed above in the while loop
 }
 
 //--- PART 2: Implementation and testing of BST word_frequency
